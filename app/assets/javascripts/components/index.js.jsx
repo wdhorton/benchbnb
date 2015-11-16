@@ -11,12 +11,18 @@ window.BenchIndex = React.createClass({
     this.setState({ benches: BenchStore.all() });
   },
 
+  handleClick: function (e) {
+    var id = e.target.dataset.benchId;
+
+    this.props.clickIndexHandler(id);
+  },
+
   render: function () {
     return (
-      <ul>
+      <ul onClick={this.handleClick}>
         {
           this.state.benches.map(function (bench) {
-            return <li key={bench.id}>{bench.description}</li>;
+            return <li key={bench.id} data-bench-id={bench.id}>{bench.description}</li>;
           })
         }
       </ul>

@@ -20,12 +20,16 @@ window.Search = React.createClass({
     this.props.history.pushState(null, 'benches/new', coords);
   },
 
+  clickIndexHandler: function (id) {
+    this.props.history.pushState(null, 'benches/' + id);
+  },
+
   render: function () {
     return (
       <div>
         <FilterParams />
-        <Map clickMapHandler={this.clickMapHandler}/>
-        <BenchIndex />
+        <Map clickMapHandler={this.clickMapHandler} clickMarkerHandler={this.clickIndexHandler}/>
+        <BenchIndex clickIndexHandler={this.clickIndexHandler} />
       </div>
     );
   }

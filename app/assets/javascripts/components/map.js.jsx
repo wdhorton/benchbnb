@@ -58,6 +58,10 @@ window.Map = React.createClass({
 
       marker.id = bench.id;
 
+      marker.addListener("click", function() {
+        this.props.clickMarkerHandler(bench.id);
+      }.bind(this));
+
       this.markers.push(marker);
     }.bind(this));
   },

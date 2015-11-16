@@ -16,6 +16,10 @@
       return _benches.slice();
     },
 
+    find: function (id) {
+      return _benches.filter(function(bench) { return bench.id === id; })[0];
+    },
+
     addChangeListener: function (callback) {
       this.on(CHANGE_EVENT, callback);
     },
