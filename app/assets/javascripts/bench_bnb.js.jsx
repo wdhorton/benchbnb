@@ -1,6 +1,6 @@
 $(function () {
   React.render(
-    <BenchIndex />,
+    <Search />,
     document.getElementById('content')
   );
 });
