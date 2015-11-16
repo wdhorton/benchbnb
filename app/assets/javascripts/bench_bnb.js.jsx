@@ -17,7 +17,7 @@ $(function () {
 
   var routes = (
     <Route path="/" component={App}>
-      <IndexRoute component={Search}/>
+      <IndexRoute component={Search} />
       <Route path="benches/new" component={BenchForm}/>
     </Route>
 

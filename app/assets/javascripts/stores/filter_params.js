@@ -5,7 +5,7 @@
   CHANGE_EVENT = "change";
 
   var updateParams = function (params) {
-    _params = params;
+    $.extend(_params, params);
   };
 
   root.FilterParamsStore = $.extend({}, EventEmitter.prototype, {
@@ -14,7 +14,7 @@
     },
 
     removeChangeListener: function (callback) {
-      this.off(CHANGE_EVENT, callback);
+      this.removeListener(CHANGE_EVENT, callback);
     },
 
     getParams: function () {

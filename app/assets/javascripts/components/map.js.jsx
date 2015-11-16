@@ -38,15 +38,18 @@ window.Map = React.createClass({
   },
 
   toggleMarkers: function () {
+    var floatEq = function (x, y) {
+      return Math.round(x * 100000) === Math.round(y * 100000);
+    };
+
     var ne_coords = this.map.getBounds().getNorthEast();
     var sw_coords = this.map.getBounds().getSouthWest();
 
     this.markers.forEach(function (marker) {
       var pos = marker.getPosition();
-      if (
-        (pos.lat() > sw_coords.lat() && pos.lat() < ne_coords.lat()) &&
-        (pos.lng() > sw_coords.lng() && pos.lng() < ne_coords.lng())
-      ) {
+      if (BenchStore.all().some(function(bench) {
+        return (floatEq(pos.lat(), bench.lat) && floatEq(pos.lat(), bench.lat));
+      })) {
         if (marker.getMap() === null) marker.setMap(this.map);
       } else {
         marker.setMap(null);

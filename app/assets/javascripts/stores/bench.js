@@ -21,7 +21,7 @@
     },
 
     removeChangeListener: function (callback) {
-      this.off(CHANGE_EVENT, callback);
+      this.removeListener(CHANGE_EVENT, callback);
     },
 
     dispatcherId: AppDispatcher.register(function (payload) {

@@ -7,6 +7,10 @@ window.Search = React.createClass({
     FilterParamsStore.addChangeListener(this.updateParams);
   },
 
+  componentWillUnmount: function () {
+    FilterParamsStore.removeChangeListener(this.updateParams);
+  },
+
   updateParams: function () {
     this.setState({ params: FilterParamsStore.getParams() });
     ApiUtil.fetchBenches(this.state.params);
@@ -19,6 +23,7 @@ window.Search = React.createClass({
   render: function () {
     return (
       <div>
+        <FilterParams />
         <Map clickMapHandler={this.clickMapHandler}/>
         <BenchIndex />
       </div>
