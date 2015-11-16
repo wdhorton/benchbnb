@@ -2,7 +2,12 @@ window.BenchForm = React.createClass({
   mixins: [React.addons.LinkedStateMixin],
 
   getInitialState: function () {
-    return { description: "", lat: "", lng: "", seating: ""};
+    return {
+      description: "",
+      lat: this.props.location.query.lat,
+      lng: this.props.location.query.lng,
+      seating: ""
+    };
   },
 
   handleSubmit: function (e) {
