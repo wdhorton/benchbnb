@@ -9,7 +9,7 @@ window.Map = React.createClass({
       zoom: 13
     };
     this.map = new google.maps.Map(map, mapOptions);
-    this.map.addListener("idle", function (e) {
+    this.map.addListener("idle", function () {
       var bounds = this.map.getBounds();
 
       var ne_coords = bounds.getNorthEast();
@@ -21,6 +21,13 @@ window.Map = React.createClass({
 
       ApiUtil.fetchBenches(query_obj);
     }.bind(this));
+
+    this.map.addListener("click", this.clickHandler);
+  },
+
+  clickHandler: function (e) {
+    var coords = { lat: e.latLng.lat(), lng: e.latLng.lng() };
+    this.props.clickMapHandler(coords);
   },
 
   hasNoMarker: function (bench) {
