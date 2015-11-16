@@ -1,4 +1,4 @@
-class BenchesController < ApplicationController
+class Api::BenchesController < ApplicationController
 
   def index
     benches = Bench.all
@@ -15,5 +15,5 @@ class BenchesController < ApplicationController
   def bench_params
     params.require(:bench).permit(:description, :lat, :long)
   end
-  
+
 end
