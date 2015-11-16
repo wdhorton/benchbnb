@@ -40,7 +40,7 @@ window.Map = React.createClass({
         (pos.lat() > sw_coords.lat() && pos.lat() < ne_coords.lat()) &&
         (pos.lng() > sw_coords.lng() && pos.lng() < ne_coords.lng())
       ) {
-        marker.setMap(this.map);
+        if (marker.getMap() === null) marker.setMap(this.map);
       } else {
         marker.setMap(null);
       }
@@ -53,6 +53,7 @@ window.Map = React.createClass({
     benches_without_markers.forEach(function (bench) {
       var marker = new google.maps.Marker({
         position: { lat: bench.lat, lng: bench.long },
+        map: null,
         title: bench.description
       });
 
