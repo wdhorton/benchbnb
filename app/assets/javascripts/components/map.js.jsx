@@ -19,7 +19,7 @@ window.Map = React.createClass({
         northEast: {lat: ne_coords.lat(), lng: ne_coords.lng()},
         southWest: {lat: sw_coords.lat(), lng: sw_coords.lng()} };
 
-      ApiUtil.fetchBenches(query_obj);
+      FilterActions.receiveParams(query_obj);
     }.bind(this));
 
     this.map.addListener("click", this.clickHandler);
