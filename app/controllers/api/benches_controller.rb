@@ -5,9 +5,18 @@ class Api::BenchesController < ApplicationController
 
     min = params[:bounds]['minSeats']
     max = params[:bounds]['maxSeats']
-    
+
     benches = benches.where("seating >= ?", min.to_i) if min && min != ""
     benches = benches.where("seating <= ?", max.to_i) if max && max != ""
+
+    benches.map do |bench|
+      if (bench.reviews.count > 0)
+        total_score = bench.reviews.reduce(0) { |acc, review| acc + review.score }
+        bench.avg_review = total_score / bench.reviews.count
+      end
+        bench
+    end
+
     render json: benches
   end
 

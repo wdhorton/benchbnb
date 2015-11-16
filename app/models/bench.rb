@@ -1,5 +1,8 @@
 class Bench < ActiveRecord::Base
   validates :description, :lat, :long, presence: true
+  has_many :reviews
+
+  attr_accessor :avg_review
 
   def self.in_bounds(bounds)
     query_vars = {

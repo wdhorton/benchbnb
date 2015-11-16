@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151116171741) do
+ActiveRecord::Schema.define(version: 20151116220920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,5 +27,15 @@ ActiveRecord::Schema.define(version: 20151116171741) do
 
   add_index "benches", ["lat"], name: "index_benches_on_lat", using: :btree
   add_index "benches", ["long"], name: "index_benches_on_long", using: :btree
+
+  create_table "reviews", force: :cascade do |t|
+    t.text     "body",       null: false
+    t.integer  "score",      null: false
+    t.integer  "bench_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["bench_id"], name: "index_reviews_on_bench_id", using: :btree
 
 end

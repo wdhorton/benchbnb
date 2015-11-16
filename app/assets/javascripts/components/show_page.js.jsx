@@ -13,11 +13,14 @@ window.ShowPage = React.createClass({
 
   render: function () {
     return (
-      <ul>
-        <Map bench={this.state.bench}/>
-        <li key="description">Description: {this.state.bench.description}</li>
-        <li key="seating">Seating: {this.state.bench.seating}</li>
-      </ul>
+      <div>
+        <ul>
+          <Map bench={this.state.bench}/>
+          <li key="description">Description: {this.state.bench.description}</li>
+          <li key="seating">Seating: {this.state.bench.seating}</li>
+        </ul>
+        <ReviewForm bench_id={this.state.bench.id} />
+      </div>
     );
   }
 });

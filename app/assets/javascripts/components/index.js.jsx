@@ -18,11 +18,24 @@ window.BenchIndex = React.createClass({
   },
 
   render: function () {
+
+
     return (
       <ul onClick={this.handleClick}>
         {
           this.state.benches.map(function (bench) {
-            return <li key={bench.id} data-bench-id={bench.id}>{bench.description}</li>;
+            var avg;
+
+            if (bench.avg_review) {
+              avg = "Average review: " + bench.avg_review;
+            }
+
+            return (
+              <li key={bench.id} data-bench-id={bench.id}>
+                {bench.description}
+                {avg}
+              </li>
+            );
           })
         }
       </ul>
