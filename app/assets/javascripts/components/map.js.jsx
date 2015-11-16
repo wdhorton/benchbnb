@@ -32,24 +32,13 @@ window.Map = React.createClass({
 
   hasNoMarker: function (bench) {
     return !this.markers.some(function (marker) {
-      var pos = marker.getPosition();
-      return pos.lat() === bench.lat && pos.lng() === bench.long;
+      return marker.id === bench.id;
     });
   },
 
   toggleMarkers: function () {
-    var floatEq = function (x, y) {
-      return Math.round(x * 100000) === Math.round(y * 100000);
-    };
-
-    var ne_coords = this.map.getBounds().getNorthEast();
-    var sw_coords = this.map.getBounds().getSouthWest();
-
     this.markers.forEach(function (marker) {
-      var pos = marker.getPosition();
-      if (BenchStore.all().some(function(bench) {
-        return (floatEq(pos.lat(), bench.lat) && floatEq(pos.lat(), bench.lat));
-      })) {
+      if (BenchStore.all().some(function(bench) { return bench.id === marker.id; })) {
         if (marker.getMap() === null) marker.setMap(this.map);
       } else {
         marker.setMap(null);
@@ -66,6 +55,8 @@ window.Map = React.createClass({
         map: null,
         title: bench.description
       });
+
+      marker.id = bench.id;
 
       this.markers.push(marker);
     }.bind(this));
